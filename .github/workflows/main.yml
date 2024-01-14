@@ -18,16 +18,17 @@ jobs:
           # Node 18 updated with OpenSSL provider which causes this compatibility issue
           # downgrading node to v16 to use the openssl-legacy-provider by default to prevent this issue
           node-version: '16.16.0'
-          
       - name: Cypress install
         uses: cypress-io/github-action@v5
-        
- ui-chrome-tests:
+        with:
+          runTests: false
+          
+  ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node16.16.0-chrome105-ff104-edge
-    needs: install
+    needs: install-windows
     steps:
       - name: Checkout
         uses: actions/checkout@v3
