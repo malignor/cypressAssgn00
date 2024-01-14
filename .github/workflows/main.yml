@@ -23,13 +23,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           runTests: false
-      # report machine parameters
       - run: yarn cypress info
-      - run: node -p 'os.cpus()'
-      - run: yarn types
-      - run: yarn lint
-      - run: yarn test:unit:ci
-      - run: yarn build:ci
  ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
