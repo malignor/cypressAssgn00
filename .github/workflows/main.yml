@@ -2,33 +2,27 @@ name: Cypress Tests
 on: [push]
   
 jobs:
-  install-windows:
-    runs-on: windows-2022
-    strategy:
-      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
-      matrix:
-        containers: [1, 2] # Uses 2 parallel instances
+  install:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.16.0-chrome105-ff104-edge
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          # The default install for the job is node 18+
-          # which has some compatibility issues with openSSL inside this windows job.
-          # Node 18 updated with OpenSSL provider which causes this compatibility issue
-          # downgrading node to v16 to use the openssl-legacy-provider by default to prevent this issue
-          node-version: '16.16.0'
+
       - name: Cypress install
         uses: cypress-io/github-action@v5
         with:
           runTests: false
+      # report machine parameters
+      - run: yarn cypress info
           
-  ui-chrome-tests:
+  assessment-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node16.16.0-chrome105-ff104-edge
-    needs: install-windows
+    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,7 +36,7 @@ jobs:
       - name: __e Dir
         run: ls /__e
 
-      - name: "UI Tests - Chrome"
+      - name: "Tests - Assessment - Chrome"
         uses: cypress-io/github-action@v5
         with:
           start: yarn start:ci
@@ -50,8 +44,8 @@ jobs:
           wait-on-timeout: 120
           browser: chrome
           record: true
-          group: "UI - Chrome"
-          spec: cypress/tests/ui/*
+          group: "Assessment"
+          spec: cypress/e2e/cypress-web-assessment/*
           config-file: cypress.config.js
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
