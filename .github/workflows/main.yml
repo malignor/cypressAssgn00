@@ -18,11 +18,10 @@ jobs:
           # Node 18 updated with OpenSSL provider which causes this compatibility issue
           # downgrading node to v16 to use the openssl-legacy-provider by default to prevent this issue
           node-version: '16.16.0'
-
+          
       - name: Cypress install
         uses: cypress-io/github-action@v5
-        with:
-          runTests: false
+        
  ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
