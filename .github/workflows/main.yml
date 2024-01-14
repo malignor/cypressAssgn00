@@ -8,7 +8,7 @@ jobs:
       image: cypress/browsers:node16.16.0-chrome105-ff104-edge
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cypress install
         uses: cypress-io/github-action@v5
@@ -23,16 +23,13 @@ jobs:
     needs: install
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cypress info
         run: npx cypress info
 
       - name: Node info
         run: node -v
-
-      - name: __e Dir
-        run: ls /__e
 
       - name: "Tests - Assessment - Chrome"
         uses: cypress-io/github-action@v5
