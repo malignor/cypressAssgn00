@@ -30,14 +30,6 @@ jobs:
       - run: yarn lint
       - run: yarn test:unit:ci
       - run: yarn build:ci
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
-
  ui-chrome-tests:
     timeout-minutes: 15
     runs-on: ubuntu-latest
