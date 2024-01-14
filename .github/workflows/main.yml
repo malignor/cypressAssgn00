@@ -35,7 +35,7 @@ jobs:
       - name: "Tests - Assessment - Chrome"
         uses: cypress-io/github-action@v5
         with:
-          start: npm start
+          start: npx cypress run
           wait-on: "http://127.0.0.1:3000"
           wait-on-timeout: 120
           browser: chrome
