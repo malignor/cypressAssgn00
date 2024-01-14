@@ -35,9 +35,10 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           start: npx cypress run
-          wait-on: "http://localhost:3000"
-          wait-on-timeout: 120
+          # wait-on: "http://localhost:3000"
+          # wait-on-timeout: 120
           browser: chrome
+          headed: true
           record: true
           group: "Assessment"
           spec: cypress/e2e/cypress-web-assessment/*
