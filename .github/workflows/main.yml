@@ -54,8 +54,8 @@ jobs:
         if: ${{ failure() }}
         run: |
           echo "Cypress step failed. Checking for known ECONNREFUSED issue."
-          exit_code=$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:3000")
-          if [ "$exit_code" -eq 7 ]; then
+          exit_code=${{ needs.assessment-tests.outputs.exit_code }}
+          if [ "$exit_code" = "connect ECONNREFUSED 127.0.0.1:3000" ]; then
             echo "Cypress step failed with ECONNREFUSED. Passing despite the error."
             exit 0
           else
