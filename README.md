@@ -6,20 +6,25 @@ The src folder is an empty project generated with [Angular CLI](https://github.c
 ## Cypress Test Example
 The purpose of assignment00 is to complete a set of tasks in an automated test framework. To show that I can learn Cypress quickly, and would be an asset to Plotly, I decided to use the Cypress framework.
 ### Installation
- * Install Cypress to have a stable framework
- * Grab the following files and put them in their respective folders:
-   + cypress/e2e/cypress-web-assessment/1-4-full-run.cy.js
-   + cypress/e2e/cypress-web-assessment/bonus-test.cy.js
-   + cypress/support/commands.ts
-If you already have a commands file in your support folder, grab the custom commands from the one in this repository and append them to your existing commands file.
+To install on your local machine...
+ * Clone this repo to a folder
+ * you may need to install the packages to that folder if any dependencies are needed.
+   + angular (npm install angular)
+     + npm i @angular-devkit/build-angular
+     + npm i @angular/router
+     + npm i @angular/platform-browser
+   + zone.js (npm install zone.js)
+   + cypress (npm install cypress --save-dev)
 
 ### Before You Run
  Consider looking in the commands.ts file, where you can add a custom wait time.
 
 ### Execution
-Direct run from command line:  npx cypress run --record --key f85ebc79-fee6-4585-8b3c-57a822d1257b
-Open Cypress using command line:  npx cypress open
- * This is especially useful if you want to see the actual Web UI in action.
+ * Direct run from command line:  npx cypress run --record --key f85ebc79-fee6-4585-8b3c-57a822d1257b
+ * Run from Github Actions: https://github.com/malignor/cypressAssgn00/actions
+   + Note that the localhost:3000 server will time out, even though all the tests pass. This is a known issue.
+ * Open Cypress using command line:  npx cypress open
+   + This is especially useful if you want to see the actual Web UI in action.
 
 ### Viewing Results
  The best way to view results is within Cypress. Otherwise you can review the screenshots in the screenshots folder and review test logs.
