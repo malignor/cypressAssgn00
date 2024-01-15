@@ -36,9 +36,9 @@ jobs:
         id: cypress
         uses: cypress-io/github-action@v5
         with:
-          start: npx cypress run
+          start: npx cypress run --port 3000
           wait-on: "http://localhost:3000"
-          wait-on-timeout: 120
+          wait-on-timeout: 90
           record: true
           group: "Assessment"
           spec: cypress/e2e/cypress-web-assessment/*
@@ -47,3 +47,8 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEBUG: "cypress:server:args"
+
+      - name: Check Cypress Exit Code
+        run: |
+          exit_code=${{ steps.cypress.outputs.exit_code }}
+          echo "Cypress exit code is $exit_code"
