@@ -32,15 +32,13 @@ jobs:
       - name: Node info
         run: node -v
 
-      - name: "Tests - Assessment - Chrome"
+      - name: "Tests - Assessment"
         id: cypress
         uses: cypress-io/github-action@v5
         with:
           start: npx cypress run
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
-          browser: chrome
-          headed: true
           record: true
           group: "Assessment"
           spec: cypress/e2e/cypress-web-assessment/*
@@ -49,16 +47,3 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEBUG: "cypress:server:args"
-
-      - name: Handle ECONNREFUSED error
-        if: ${{ failure() }}
-        run: |
-          echo "Cypress step failed. Checking for known ECONNREFUSED issue."
-          exit_code=${{ needs.assessment-tests.outputs.exit_code }}
-          if [ "$exit_code" = "connect ECONNREFUSED 127.0.0.1:3000" ]; then
-            echo "Cypress step failed with ECONNREFUSED. Passing despite the error."
-            exit 0
-          else
-            echo "Cypress step failed with exit code $exit_code. Check for other errors."
-            exit 1
-          fi
