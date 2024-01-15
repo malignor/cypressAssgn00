@@ -9,21 +9,21 @@ The purpose of assignment00 is to complete a set of tasks in an automated test f
 To install on your local machine...
  * Clone this repo to a folder
  * you may need to install the packages to that folder if any dependencies are needed.
-   + angular (npm install angular)
-     + npm i @angular-devkit/build-angular
-     + npm i @angular/router
-     + npm i @angular/platform-browser
-   + zone.js (npm install zone.js)
-   + cypress (npm install cypress --save-dev)
+   + angular: ```npm install angular```
+     + ```npm i @angular-devkit/build-angular```
+     + ```npm i @angular/router```
+     + ```npm i @angular/platform-browser```
+   + zone.js: ```npm install zone.js```
+   + cypress: ```npm install cypress --save-dev```
 
 ### Before You Run
- Consider looking in the commands.ts file, where you can add a custom wait time.
+ Consider looking in the `commands.ts` file, where you can add a custom wait time.
 
 ### Execution
- * Direct run from command line:  npx cypress run --record --key f85ebc79-fee6-4585-8b3c-57a822d1257b
+ * Direct run from command line:  ```npx cypress run --record --key f85ebc79-fee6-4585-8b3c-57a822d1257b```
  * Run from Github Actions: https://github.com/malignor/cypressAssgn00/actions
    + Note that the localhost:3000 server will time out, even though all the tests pass. This is a known issue.
- * Open Cypress using command line:  npx cypress open
+ * Open Cypress using command line:  ```npx cypress open```
    + This is especially useful if you want to see the actual Web UI in action.
 
 ### Viewing Results
